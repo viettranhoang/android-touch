@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import app.futured.hauler.setOnDragActivityListener
 import app.futured.hauler.setOnDragDismissedListener
 import app.futured.haulersample.R
+import com.r0adkll.slidr.Slidr
+import com.r0adkll.slidr.model.SlidrConfig
+import com.r0adkll.slidr.model.SlidrPosition
 import kotlinx.android.synthetic.main.activity_simple.*
 
 class SimpleActivity : AppCompatActivity() {
@@ -20,12 +23,14 @@ class SimpleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_simple)
 
+        Slidr.attach(this,
+            SlidrConfig.Builder()
+                .position(SlidrPosition.VERTICAL)
+                .build()
+        )
+
         commonHaulerView.setOnDragDismissedListener {
             finish()
-        }
-
-        commonHaulerView.setOnDragActivityListener { elasticOffset, rawOffset ->
-            Log.d("SimpleActivity", "elasticOffset: $elasticOffset, rawOffset: $rawOffset")
         }
     }
 }
